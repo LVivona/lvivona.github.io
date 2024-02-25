@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
 import { TextGenerateEffect } from "@/components/ui/text-generate";
 import { SparklesCore } from "../components/ui/sparkels";
 import { TracingBeam } from "@/components/ui/tracing-beam";
