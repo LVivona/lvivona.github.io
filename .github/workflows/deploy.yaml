@@ -1,0 +1,24 @@
+name: Deploy Next.js Site
+
+on:
+  push:
+    branches:
+      - main # Change to your deployment branch if different
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "21.5.0" # Use the Node.js version that matches your development environment
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build and Export Next.js app
+        run: |
+          npm run build
+          npm run export
