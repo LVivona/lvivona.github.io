@@ -1,11 +1,20 @@
 "use client";
+import React from "react";
+
 import { TextGenerateEffect } from "@/components/ui/text-generate";
 import { SparklesCore } from "../components/ui/sparkels";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 
+// Icons
+import { Github } from "@/components/icons/github";
+import { Email } from "@/components/icons/email";
+
+const email = "luca.v.vivona@gmail.com";
+
 export default function Home() {
   // adjust later
   // const [theme, setTheme] = useState(true);
+  const [displayEmail, setDisplayEmail] = React.useState(false);
 
   return (
     <section className="">
@@ -33,31 +42,29 @@ export default function Home() {
                 Projects
               </a>
               <a
+                onClick={() => {
+                  setDisplayEmail((prev) => !prev);
+                }}
+                className=" text-white hover:text-gray-300"
+              >
+                <Email />
+              </a>
+              <a
                 href={"https://github.com/LVivona"}
                 className=" text-white hover:text-gray-300 sm:hidden"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-brand-github-filled"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path
-                    d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z"
-                    stroke-width="0"
-                    fill="currentColor"
-                  />
-                </svg>
+                <Github />
               </a>
             </div>{" "}
           </span>
+        </div>
+
+        {/* hidden email */}
+        <div
+          id="details"
+          className={`z-10 mt-12 text-white ${!displayEmail && "opacity-0"}`}
+        >
+          {displayEmail && email}
         </div>
       </nav>
       {/**/}
@@ -78,29 +85,11 @@ export default function Home() {
         href={"https://github.com/LVivona"}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed right-5 top-5 z-10 inline-flex hidden h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 sm:block "
+        className="fixed right-5 top-5 z-10 hidden h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 sm:block sm:inline-flex "
       >
         <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
         <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-brand-github-filled"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z"
-              stroke-width="0"
-              fill="currentColor"
-            />
-          </svg>
+          <Github />
         </span>
       </a>
 
@@ -109,12 +98,10 @@ export default function Home() {
           <div className="relative mx-auto max-w-2xl pt-4 antialiased">
             <div id="home" className="mb-10">
               <div className=" flex h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
-                <h1 className="relative z-20 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                  <TextGenerateEffect
-                    className="text-3xl md:text-7xl lg:text-6xl"
-                    words={"Hello World 👋"}
-                  />
+                <h1 className="relative z-20 text-center text-5xl font-bold text-white duration-150 md:text-6xl lg:text-7xl">
+                  <TextGenerateEffect className="" words={"Hello World 👋"} />
                 </h1>
+
                 <div className="relative h-40 w-[40rem]">
                   {/* Gradients */}
                   <div className="absolute inset-x-20 top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm" />
