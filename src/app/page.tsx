@@ -33,7 +33,7 @@ export default function Home() {
                 Projects
               </a>
               <a
-                href="#comming"
+                href={"https://github.com/LVivona"}
                 className=" text-white hover:text-gray-300 sm:hidden"
               >
                 <svg
