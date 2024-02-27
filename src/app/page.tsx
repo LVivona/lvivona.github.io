@@ -4,81 +4,29 @@ import React from "react";
 import { TextGenerateEffect } from "@/components/ui/text-generate";
 import { SparklesCore } from "../components/ui/sparkels";
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import { Navbar } from "@/components/ui/navbar";
 
 // Icons
 import { Github } from "@/components/icons/github";
-import { Email } from "@/components/icons/email";
-
-const email = "luca.v.vivona@gmail.com";
 
 export default function Home() {
   // adjust later
   // const [theme, setTheme] = useState(true);
-  const [displayEmail, setDisplayEmail] = React.useState(false);
 
   return (
-    <section className="">
+    <section>
       {/* Floating Navbar */}
-      <nav
-        className={` fixed left-0 right-0 top-2 z-50 flex items-center justify-center p-4 `}
-      >
-        <div className="fixed top-5 inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-            <div className="flex space-x-4">
-              <a
-                href="#home"
-                className="scroll-smooth text-black hover:text-gray-300 dark:text-white"
-              >
-                Home
-              </a>
-              <a href="#comming" className="text-white hover:text-gray-300">
-                About
-              </a>
-              <a href="#comming" className="text-white hover:text-gray-300">
-                Blog
-              </a>
-              <a href="#comming" className="text-white hover:text-gray-300">
-                Projects
-              </a>
-              <a
-                onClick={() => {
-                  setDisplayEmail((prev) => !prev);
-                }}
-                className=" text-white hover:text-gray-300"
-              >
-                <Email />
-              </a>
-              <a
-                href={"https://github.com/LVivona"}
-                className=" text-white hover:text-gray-300 sm:hidden"
-              >
-                <Github />
-              </a>
-            </div>{" "}
-          </span>
-        </div>
+      <Navbar />
 
-        {/* hidden email */}
-        <div
-          id="details"
-          className={`z-10 mt-12 text-white ${!displayEmail && "opacity-0"}`}
-        >
-          {displayEmail && email}
-        </div>
-      </nav>
-      {/**/}
       {/* Floating Theme Toggle Button */}
-      {/*
-      <button
-        onClick={() => {
-          setTheme((prev: boolean) => !prev);
-        }}
-        className="fixed right-5 top-5 z-50 rounded-full bg-gray-300 p-2 text-lg shadow-lg transition-colors hover:bg-zinc-700 focus:outline-none dark:bg-zinc-900"
-      >
-        <span>{theme ? "🌞" : "🌜"}</span>
-    </button >
-    */}
+      {/* <button
+	        onClick={() => {
+	          setTheme((prev: boolean) => !prev);
+	        }}
+	        className="fixed right-5 top-5 z-50 rounded-full bg-gray-300 p-2 text-lg shadow-lg transition-colors hover:bg-zinc-700 focus:outline-none dark:bg-zinc-900"
+	      >
+	        <span>{theme ? "🌞" : "🌜"}</span>
+	    </button > */}
 
       {/* GitHub */}
       <a
@@ -95,7 +43,7 @@ export default function Home() {
 
       <main className="flex min-h-screen flex-col items-center justify-between py-2">
         <TracingBeam className=" h-auto">
-          <div className="relative mx-auto max-w-2xl pt-4 antialiased">
+          <div className="relative mx-auto max-w-2xl pt-14 antialiased">
             <div id="home" className="mb-10">
               <div className=" flex h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
                 <h1 className="relative z-20 text-center text-5xl font-bold text-white duration-150 md:text-6xl lg:text-7xl">
@@ -114,8 +62,8 @@ export default function Home() {
                     background="transparent"
                     minSize={0.4}
                     maxSize={1}
-                    particleDensity={500}
-                    className=" h-full w-full"
+                    particleDensity={250}
+                    className="h-full w-full"
                     particleColor={"#FFFFFF"}
                   />
 

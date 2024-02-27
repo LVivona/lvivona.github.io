@@ -32,7 +32,7 @@ export const TracingBeam = ({
 
   useEffect(() => {
     if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
+      setSvgHeight(contentRef.current.offsetHeight + 200);
     }
   }, []);
   useEffect(() => {
@@ -61,11 +61,11 @@ export const TracingBeam = ({
       ref={ref}
       className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
     >
-      <div className="absolute -left-20 top-3">
+      <div className="absolute -left-28 top-5 hidden xl:block">
         <motion.div
           transition={{
-            duration: 0.2,
-            delay: 0.2,
+            duration: 0.1,
+            delay: 0.1,
           }}
           animate={{
             boxShadow:
@@ -77,8 +77,8 @@ export const TracingBeam = ({
         >
           <motion.div
             transition={{
-              duration: 0.2,
-              delay: 0.2,
+              duration: 0.1,
+              delay: 0.1,
             }}
             animate={{
               backgroundColor:
