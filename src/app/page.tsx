@@ -1,86 +1,175 @@
 "use client";
-import React from "react";
+import { useState, useEffect } from "react";
 
+// NEXTJS
+import Image from "next/image";
+
+// Components
+import HeroSection from "@/components/hero";
+import Navbar from "@/components/ui/navbar";
+
+// UI
 import { TextGenerateEffect } from "@/components/ui/text-generate";
-import { SparklesCore } from "../components/ui/sparkels";
-import { TracingBeam } from "@/components/ui/tracing-beam";
-import { Navbar } from "@/components/ui/navbar";
 
-// Icons
-import { Github } from "@/components/icons/github";
+const blogs = [
+  {
+    type: "Technical",
+    src: "/api/images?folder=blogs&image=clouds.webp&height=700&width=500&crop=true",
+    alt: "Technical Blog 1",
+    height: 300,
+    width: 500,
+    description: "An in-depth look at React hooks",
+    slug: "react-hooks-deep-dive",
+    title: "Empower your entire workforce with enterprise-grade AI",
+  },
+  {
+    type: "Opinion",
+    src: "/api/images?folder=blogs&image=rvb.webp&height=700&width=500&crop=true",
+    alt: "Opinion Blog 1",
+    height: 300,
+    width: 500,
+    description: "Why TypeScript is the future of web development",
+    slug: "typescript-future-of-web-dev",
+    title: "Empower your entire workforce with enterprise-grade AI",
+  },
+  {
+    type: "Opinion",
+    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
+    alt: "Opinion Blog 1",
+    height: 300,
+    width: 500,
+    description: "Why TypeScript is the future of web development",
+    slug: "typescript-future-of-web-dev",
+    title: "Empower your entire workforce with enterprise-grade AI",
+  },
+  {
+    type: "Opinion",
+    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
+    alt: "Opinion Blog 1",
+    height: 300,
+    width: 500,
+    description: "Why TypeScript is the future of web development",
+    slug: "typescript-future-of-web-dev",
+    title: "Empower your entire workforce with enterprise-grade AI",
+  },
+  {
+    type: "Opinion",
+    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
+    alt: "Opinion Blog 1",
+    height: 300,
+    width: 500,
+    description: "Why TypeScript is the future of web development",
+    slug: "typescript-future-of-web-dev",
+    title: "Empower your entire workforce with enterprise-grade AI",
+  },
+];
 
 export default function Home() {
-  // adjust later
-  // const [theme, setTheme] = useState(true);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("about");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          setIsSectionVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <section>
       {/* Floating Navbar */}
       <Navbar />
 
-      {/* Floating Theme Toggle Button */}
-      {/* <button
-	        onClick={() => {
-	          setTheme((prev: boolean) => !prev);
-	        }}
-	        className="fixed right-5 top-5 z-50 rounded-full bg-gray-300 p-2 text-lg shadow-lg transition-colors hover:bg-zinc-700 focus:outline-none dark:bg-zinc-900"
-	      >
-	        <span>{theme ? "🌞" : "🌜"}</span>
-	    </button > */}
-
-      {/* GitHub */}
-      <a
-        href={"https://github.com/LVivona"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed right-5 top-5 z-50 hidden h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 sm:inline-flex "
-      >
-        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-        <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-          <Github />
-        </span>
-      </a>
-
       <main className="flex min-h-screen flex-col items-center justify-between py-2">
-        <TracingBeam className=" h-auto">
-          <div className="relative mx-auto max-w-2xl pt-14 antialiased">
-            <div id="home" className="mb-10">
-              <div className=" flex h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
-                <h1 className="relative z-20 text-center text-5xl font-bold text-white duration-150 md:text-6xl lg:text-7xl">
-                  <TextGenerateEffect className="" words={"Hello World 👋"} />
-                </h1>
+        <div className="relative flex items-center justify-center h-screen">
+          <section className="w-full h-full flex ">
+            <HeroSection/>
+          </section>
+        </div>
 
-                <div className="relative h-40 w-[40rem]">
-                  {/* Gradients */}
-                  <div className="absolute inset-x-20 top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm" />
-                  <div className="absolute inset-x-20 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-                  <div className="absolute inset-x-60 top-0 h-[5px] w-1/4 bg-gradient-to-r from-transparent via-pink-500 to-transparent blur-sm" />
-                  <div className="absolute inset-x-60 top-0 h-px w-1/4 bg-gradient-to-r from-transparent via-pink-500 to-transparent" />
+        <div className="relative mx-auto max-w-4xl sm:px-10 pb-10 antialiased p-2 sm:p-0">
+          <section id="about" className="max-h-screen max-w-screen mt-[102px] ">
+            <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-black">
+              {isSectionVisible && (
+                <>
+                  <div className="relative z-20 max-w-3xl text-center text-md text-white animation translateUp">
+                    <h1 className="text-center mb-4 text-white animate-translateUp">
+                      About me{" "}
+                    </h1>
+                    <Image
+                      src="https://avatars.githubusercontent.com/u/66436951?v=4"
+                      alt="Luca Vivona"
+                      width={128}
+                      height={128}
+                      loading="eager"
+                      className="rounded-full mx-auto border-[1px] shadow-lg animate-translateUp duration-200"
+                    />
+                    <TextGenerateEffect
+                      className="animate-translateUp text-center"
+                      words="Hello wanderer, my name is Luca Vivona, a Computer Scientist who loves tinkering around with Deep Learning models, and low-level programming. 🧠🤖"
+                    />
+                  </div>
 
-                  {/* Core component */}
-                  <SparklesCore
-                    background="transparent"
-                    minSize={0.4}
-                    maxSize={1}
-                    particleDensity={250}
-                    className="h-full w-full"
-                    particleColor={"#FFFFFF"}
-                  />
-
-                  {/* Radial Gradient to prevent sharp edges */}
-                  <div className="absolute inset-0 h-full w-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
-                </div>
-              </div>
+                  {/* <div className=" flex flex-row gap-x-2 border-1 animate-translateUp ">
+                    <BlogCard
+                      type="For Everyone"
+                      alt="blog-1"
+                      src="/api/images?folder=blogs&image=clouds.webp&height=700&width=500&crop=true"
+                      width={250}
+                      height={250}
+                      description="building a compiler"
+                      slug="compilers"
+                      title="Empower your entire workforce with enterprise-grade AI"
+                    />
+                    <div className=" hidden sm:block">
+                      <BlogCard
+                        type="Technical"
+                        alt="blog-1"
+                        src="/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true"
+                        width={250}
+                        height={250}
+                        description="building a compiler"
+                        slug="compilers"
+                        title="Empower your entire workforce with enterprise-grade AI"
+                      />
+                    </div>
+                    <div className=" hidden md:block">
+                      <BlogCard
+                        type="Project"
+                        alt="blog-1"
+                        src="/api/images?folder=blogs&image=rvb.webp&height=700&width=500&crop=true"
+                        width={250}
+                        height={250}
+                        description="building a compiler"
+                        slug="compilers"
+                        title="Empower your entire workforce with enterprise-grade AI"
+                      />
+                    </div>
+                  </div> */}
+                </>
+              )}
             </div>
-            <div id="comming" className="mb-40">
-              <div className="flex h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-black">
-                <h1 className="relative z-20 text-center text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-                  More Coming Soon...
-                </h1>
-              </div>
-            </div>
+          </section>
+        </div>
+
+        <section
+          id="blog"
+          className="max-h-screen w-full overflow-hidden no-scrollbar"
+        >
+          <div className="pl-10 py-12 z-10">
+            {/* <BlogCarousel blogs={blogs} /> */}
+            
           </div>
-        </TracingBeam>
+        </section>
       </main>
     </section>
   );
