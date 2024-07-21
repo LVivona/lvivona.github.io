@@ -52,8 +52,8 @@ export default function Navbar() {
             <div className="flex items-center justify-center flex-grow space-x-8">
               {/* header links */}
 
-              <a href='#about'><div onMouseEnter={() => {setIsHoveredOn(true)}} className=' text-black dark:text-gray-300  text-sm relative group'>About</div></a>
-              <Link href='/blogs'><div onMouseEnter={() => {setIsHoveredOn(true)}} className='text-black dark:text-gray-300 text-sm relative group'>Blog</div></Link>
+              <a href='#about'><div onMouseEnter={() => {setIsHoveredOn(true)}} className=' text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group'>About</div></a>
+              <Link href='/blogs'><div onMouseEnter={() => {setIsHoveredOn(true)}} className='text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group'>Blog</div></Link>
 
             </div>
             {/* Search icon placeholder */}

@@ -165,9 +165,8 @@ export default function HeroSection() {
                   y={(rowIndex + 0.5) * (dimensions.height / column.chars.length)}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  className={`font-mono ${isStaticChar ? "animate-pulse" : ""}`}
+                  className={`font-mono ${isStaticChar ? "animate-pulse" : ""} dark:fill-white fill-black`}
                   style={{
-                    fill: isDarkMode ? "#ffffff" : "#000000",
                     fontSize: "1rem",
                   }}
                 >

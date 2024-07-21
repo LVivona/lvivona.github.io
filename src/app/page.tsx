@@ -8,10 +8,6 @@ import Image from "next/image";
 import HeroSection from "@/components/hero";
 import Navbar from "@/components/ui/navbar";
 
-// UI
-import { TextGenerateEffect } from "@/components/ui/text-generate";
-import { useTheme } from "@/context/themeContext";
-
 const blogs = [
   {
     type: "Technical",
@@ -114,10 +110,11 @@ export default function Home() {
                       loading="eager"
                       className="rounded-full mx-auto border-[2px] border-black/60 animate-translateUp duration-200"
                     />
-                    <TextGenerateEffect
-                      className="animate-translateUp text-center"
-                      words="Hello wanderer, my name is Luca Vivona, a Computer Scientist who loves tinkering around with Deep Learning models, and low-level programming. 🧠🤖"
-                    />
+                    <div
+                      className="animate-translateUp text-center pt-5">
+                        Hello wanderer, my name is Luca Vivona, a Computer Scientist who loves tinkering around with Deep Learning models, and low-level programming. 🧠🤖
+                      </div>
+
                   </div>
 
                   {/* <div className=" flex flex-row gap-x-2 border-1 animate-translateUp ">

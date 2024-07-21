@@ -1,6 +1,6 @@
 "use client"
 // src/context/ThemeContext.tsx
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface ThemeContextProps {
   isDarkMode: boolean;
@@ -10,7 +10,7 @@ interface ThemeContextProps {
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
@@ -18,8 +18,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
-      <div className={` duration-200 ${isDarkMode ? "dark" : ""}`}>
-      {children}
+      <div className={`duration-300 ${isDarkMode ? 'dark' : ''}`}>
+        {children}
       </div>
     </ThemeContext.Provider>
   );
