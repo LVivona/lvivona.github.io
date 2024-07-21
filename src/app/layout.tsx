@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/context/themeContext";
 const robot_mono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vivona.xyz/"),
   title: "Luca Vivona",
   description:
     "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
@@ -19,6 +20,34 @@ export const metadata: Metadata = {
       rel: "apple-touch-icon",
       url: "/apple-touch-icon.png",
     },
+  },
+  openGraph: {
+    type: "website",
+    url: "https://vivona.xyz",
+    title: "Luca Vivona",
+    description: "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
+    images: [
+      {
+        url: "/og-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Luca Vivona personal website.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@LucaVVivona", // Replace with your actual Twitter handle
+    title: "Luca Vivona",
+    description: "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
+    images: [
+      {
+        url: "/og-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Luca Vivona personal website.",
+      },
+    ],
   },
   // Add more metadata as needed
 };
