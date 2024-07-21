@@ -2,7 +2,9 @@ import type { Config } from "tailwindcss";
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
+
 const config: Config = {
+  darkMode: 'selector',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,9 +19,9 @@ const config: Config = {
       },
       keyframes: {
         pad: {
-          '0%': { padding: '0' },
-          '50%': { padding: '0' },
-          '100%': { padding: '5rem' }, // Adjust to your desired padding value
+          '0%': { padding: '0', boxShadow: 'none' },
+          '50%': { padding: '0', boxShadow: 'none' },
+          '100%': { padding: '5rem', boxShadow: '0 6px 6px rgba(0, 0, 0, 0.1)' },
         },
         translateUp: {
           '0%': { transform: 'translateY(20%)', opacity : "0%" },
@@ -28,40 +30,24 @@ const config: Config = {
       },
       animation: {
         translateUp: 'translateUp 1.5s ease-out',
-        pad: 'pad 1.5s ease-in-out forwards', // 1s animation duration, forwards to keep the final state
+        pad: 'pad 1.5s ease-in-out forwards',
       },
     },
   },
-  plugins: [addVariablesForColors,
-    function ({ addUtilities } : { addUtilities : any }) {
+  plugins: [
+    function ({ addUtilities }: { addUtilities: any }) {
       addUtilities({
         '.no-scrollbar': {
-          /* Hide scrollbar for Chrome, Safari, and Opera */
           '-webkit-overflow-scrolling': 'touch',
-          '-webkit-scrollbar': {
-            display: 'none',
-          },
-          /* Hide scrollbar for IE, Edge, and Firefox */
-          '-ms-overflow-style': 'none', /* IE and Edge */
-          'scrollbar-width': 'none', /* Firefox */
+          '-webkit-scrollbar': { display: 'none' },
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
         },
-        '.no-scrollbar::-webkit-scrollbar': {
-          display: 'none',
-        },
-      })
+        '.no-scrollbar::-webkit-scrollbar': { display: 'none' },
+      });
     },
   ],
 };
 
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-}
 
 export default config;
