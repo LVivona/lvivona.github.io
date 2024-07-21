@@ -62,7 +62,25 @@ const blogs = [
 ];
 
 export default function Home() {
+
   const [isSectionVisible, setIsSectionVisible] = useState(false);
+  //choose the screen size 
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+        setIsSectionVisible(true)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [])
+
+  
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,16 +176,6 @@ export default function Home() {
             </div>
           </section>
         </div>
-
-        <section
-          id="blog"
-          className="max-h-screen w-full overflow-hidden no-scrollbar"
-        >
-          <div className="pl-10 py-12 z-10">
-            {/* <BlogCarousel blogs={blogs} /> */}
-            
-          </div>
-        </section>
       </main>
     </section>
   );
