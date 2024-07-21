@@ -124,13 +124,14 @@ export default function HeroSection() {
 
   return (
     <div id="waves" className="w-screen h-full overflow-hidden rounded-lg border-black dark:bg-black">
-      <div className="w-full h-full animate-pad shadow-xl">
+      <div className=" w-screen h-screen animate-pad">
+        <div className="w-full h-full">
         <svg
           ref={svgRef}
           id="bannerSVG"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          className="w-full h-full"
+          className=" relative w-full h-full"
           viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
         >
           {matrixColumns.map((column, colIndex) =>
@@ -176,6 +177,7 @@ export default function HeroSection() {
             })
           )}
         </svg>
+        </div>
       </div>
       <a href="#about">
         <button className="flex items-center justify-center w-fit p-2 px-4 min-w-max text-sm font-bold text-center hover:bg-opacity-100 active:bg-opacity-90 rounded-full backdrop-blur-sm transition-all md:text-base outline-[#09073a]/50 absolute bottom-4 right-1/2 z-10 translate-x-1/2 dark:bg-zinc-800/40 dark:hover:bg-zinc-700/50 bg-zinc-800 hover:bg-zinc-800/70">

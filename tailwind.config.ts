@@ -21,7 +21,7 @@ const config: Config = {
         pad: {
           '0%': { padding: '0', boxShadow: 'none' },
           '50%': { padding: '0', boxShadow: 'none' },
-          '100%': { padding: '5rem', boxShadow: '0 6px 6px rgba(0, 0, 0, 0.1)' },
+          '100%': { padding: '4rem'},
         },
         translateUp: {
           '0%': { transform: 'translateY(20%)', opacity : "0%" },
