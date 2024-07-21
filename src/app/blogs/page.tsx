@@ -78,21 +78,20 @@ export default function Error() {
 
   return (
     <>
-    <div className="flex flex-col justify-center items-center w-screen h-screen p-6 ">
-      <div className="flex flex-col sm:flex-row items-center justify-center max-h-screen w-[1000px] border-2 p-4 rounded-lg ">
-        <div className="flex-shrink-0 text-wrap">
+    <div className="dark:bg-black bg-white dark:text-white text-black flex flex-col justify-center items-center w-full h-screen p-6 ">
+      <div className="flex flex-col sm:flex-row items-center justify-center max-h-screen max-w-full md:w-[1000px] border-2 p-4 rounded-lg  shadow-md">
+        <div className="flex-shrink-0">
           <svg
             viewBox="0 0 400 350"
             xmlns="http://www.w3.org/2000/svg"
-            width={400}
-            className="bg-black text-white p-4 rounded-lg"
+            className=" w-full p-4 rounded-lg "
           >
             <text
               x="10"
               y="20"
               fontFamily="monospace"
               fontSize="8"
-              fill="white"
+              className=" dark:fill-white fill-black"
               xmlSpace="preserve"
             >
               {stop_exe.split('\n').map((line, index) => (
@@ -103,14 +102,13 @@ export default function Error() {
             </text>
           </svg>
         </div>
-        <div className="text-white mt-4 sm:mt-0 sm:ml-4 flex-grow">
-          {loaded && <TextGenerateEffect words={displayTxt} />}
+        <div className="  mt-4 sm:mt-0 sm:ml-4 flex-grow">
+          {loaded && <span className="animate-translateUp">{displayTxt}</span>}
         </div>
       </div>
       
-      <span className=" mt-10">{"blog coming soon.."} <span>Go back <Link className=" text-green-300 hover:text-green-400" href={"/"}>Home</Link></span></span>
+      <span className="mt-10">{"blog coming soon.."} <span>Go back <Link className="text-green-300 hover:text-green-400" href={"/"}>Home</Link></span></span>
     </div>
-    
     </>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 // NEXTJS
 import Image from "next/image";
@@ -10,6 +10,7 @@ import Navbar from "@/components/ui/navbar";
 
 // UI
 import { TextGenerateEffect } from "@/components/ui/text-generate";
+import { useTheme } from "@/context/themeContext";
 
 const blogs = [
   {
@@ -85,11 +86,11 @@ export default function Home() {
   }, []);
 
   return (
-    <section>
+    <section className="  dark:bg-black bg-white ">
       {/* Floating Navbar */}
       <Navbar />
 
-      <main className="flex min-h-screen flex-col items-center justify-between py-2">
+      <main className="  flex min-h-screen flex-col items-center justify-between py-2">
         <div className="relative flex items-center justify-center h-screen">
           <section className="w-full h-full flex ">
             <HeroSection/>
@@ -98,11 +99,11 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-4xl sm:px-10 pb-10 antialiased p-2 sm:p-0">
           <section id="about" className="max-h-screen max-w-screen mt-[102px] ">
-            <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-black">
+            <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
               {isSectionVisible && (
                 <>
-                  <div className="relative z-20 max-w-3xl text-center text-md text-white animation translateUp">
-                    <h1 className="text-center mb-4 text-white animate-translateUp">
+                  <div className="relative z-20 max-w-3xl text-center text-md text-black dark:text-white animation translateUp">
+                    <h1 className="text-center mb-4  animate-translateUp">
                       About me{" "}
                     </h1>
                     <Image
@@ -111,7 +112,7 @@ export default function Home() {
                       width={128}
                       height={128}
                       loading="eager"
-                      className="rounded-full mx-auto border-[1px] shadow-lg animate-translateUp duration-200"
+                      className="rounded-full mx-auto border-[2px] border-black/60 animate-translateUp duration-200"
                     />
                     <TextGenerateEffect
                       className="animate-translateUp text-center"

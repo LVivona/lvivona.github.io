@@ -4,7 +4,7 @@ export function Github(): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-brand-github-filled"
+      className="icon icon-tabler icon-tabler-brand-github-filled text-black dark:text-white"
       width="24"
       height="24"
       viewBox="0 0 24 24"

@@ -1,10 +1,9 @@
+import { useTheme } from "@/context/themeContext";
 import { useState, useEffect, useRef } from "react";
 
-const staticMessage = "[Hello-World]";
-
-interface HeroSectionProps {
-  loading: boolean;
-}
+const staticMessage1 = "<Hello>";
+const staticMessage2 = "<World>";
+const fullMessage = "<Hello-World>";
 
 interface Column {
   chars: string[];
@@ -12,6 +11,7 @@ interface Column {
 }
 
 export default function HeroSection() {
+  const { isDarkMode } = useTheme();
   const svgRef = useRef<SVGSVGElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [matrixColumns, setMatrixColumns] = useState<Column[]>([]);
@@ -41,8 +41,16 @@ export default function HeroSection() {
     const columnCount = Math.floor(dimensions.width / 20);
     const rowCount = Math.floor(dimensions.height / 20);
 
-    const messageStartCol = Math.floor((columnCount - staticMessage.length) / 2);
-    const messageRow = Math.floor(rowCount / 2);
+    const messageStartCol = dimensions.width < 300
+      ? [
+          Math.floor((columnCount - staticMessage1.length) / 2),
+          Math.floor((columnCount - staticMessage2.length) / 2)
+        ]
+      : [Math.floor((columnCount - fullMessage.length) / 2)];
+
+    const messageRows = dimensions.width < 300
+      ? [Math.floor(rowCount / 2) - 1, Math.floor(rowCount / 2)]
+      : [Math.floor(rowCount / 2)];
 
     let columns: Column[] = Array(columnCount)
       .fill(null)
@@ -50,12 +58,29 @@ export default function HeroSection() {
         chars: Array(rowCount)
           .fill(null)
           .map((_, rowIndex) => {
-            if (
-              colIndex >= messageStartCol &&
-              colIndex < messageStartCol + staticMessage.length &&
-              rowIndex === messageRow
-            ) {
-              return staticMessage[colIndex - messageStartCol];
+            if (dimensions.width < 300) {
+              if (
+                colIndex >= messageStartCol[0] &&
+                colIndex < messageStartCol[0] + staticMessage1.length &&
+                rowIndex === messageRows[0]
+              ) {
+                return staticMessage1[colIndex - messageStartCol[0]];
+              }
+              if (
+                colIndex >= messageStartCol[1] &&
+                colIndex < messageStartCol[1] + staticMessage2.length &&
+                rowIndex === messageRows[1]
+              ) {
+                return staticMessage2[colIndex - messageStartCol[1]];
+              }
+            } else {
+              if (
+                colIndex >= messageStartCol[0] &&
+                colIndex < messageStartCol[0] + fullMessage.length &&
+                rowIndex === messageRows[0]
+              ) {
+                return fullMessage[colIndex - messageStartCol[0]];
+              }
             }
             return generateMatrixContent();
           }),
@@ -66,12 +91,25 @@ export default function HeroSection() {
       columns = columns.map((column, colIndex) => ({
         ...column,
         chars: column.chars.map((char, rowIndex) => {
-          if (
-            colIndex >= messageStartCol &&
-            colIndex < messageStartCol + staticMessage.length &&
-            rowIndex === messageRow
-          ) {
-            return char; // Keep the static message characters unchanged
+          if (dimensions.width < 300) {
+            if (
+              (colIndex >= messageStartCol[0] &&
+                colIndex < messageStartCol[0] + staticMessage1.length &&
+                rowIndex === messageRows[0]) ||
+              (colIndex >= messageStartCol[1] &&
+                colIndex < messageStartCol[1] + staticMessage2.length &&
+                rowIndex === messageRows[1])
+            ) {
+              return char; // Keep the static message characters unchanged
+            }
+          } else {
+            if (
+              colIndex >= messageStartCol[0] &&
+              colIndex < messageStartCol[0] + fullMessage.length &&
+              rowIndex === messageRows[0]
+            ) {
+              return char; // Keep the static message characters unchanged
+            }
           }
           return rowIndex === 0
             ? generateMatrixContent()
@@ -85,54 +123,62 @@ export default function HeroSection() {
   }, [dimensions]);
 
   return (
-    <div id="waves" className="w-screen h-screen overflow-hidden p-10 rounded-lg border-black animate-pad">
-      <svg
-        ref={svgRef}
-        id="bannerSVG"
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        className="w-full h-full text-left"
-        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
-      >
-        {matrixColumns.map((column, colIndex) =>
-          column.chars.map((char, rowIndex) => {
-            const messageStartCol = Math.floor(
-              (matrixColumns.length - staticMessage.length) / 2
-            );
-            const messageRow = Math.floor(
-              column.chars.length / 2
-            );
-            const isStaticChar =
-              colIndex >= messageStartCol &&
-              colIndex < messageStartCol + staticMessage.length &&
-              rowIndex === messageRow;
-            return (
-              <text
-                key={`${colIndex}-${rowIndex}`}
-                x={colIndex * 20}
-                y={rowIndex * 20}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className={`font-mono ${isStaticChar && "animate-pulse"}`}
-                style={{
-                  fill: !isStaticChar
-                    ? "#ffffff"
-                    : rowIndex !== 0
-                    ? "#ffffff"
-                    : `rgba(0, 255, 0, ${
-                        1 - rowIndex / column.chars.length
-                      })`,
-                  fontSize: isStaticChar ? "18px" : "14px",
-                }}
-              >
-                {char}
-              </text>
-            );
-          })
-        )}
-      </svg>
+    <div id="waves" className="w-screen h-full overflow-hidden rounded-lg border-black dark:bg-black">
+      <div className="w-full h-full animate-pad shadow-xl">
+        <svg
+          ref={svgRef}
+          id="bannerSVG"
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          className="w-full h-full"
+          viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+        >
+          {matrixColumns.map((column, colIndex) =>
+            column.chars.map((char, rowIndex) => {
+              const messageStartCol = dimensions.width < 300
+                ? [
+                    Math.floor((matrixColumns.length - staticMessage1.length) / 2),
+                    Math.floor((matrixColumns.length - staticMessage2.length) / 2)
+                  ]
+                : [Math.floor((matrixColumns.length - fullMessage.length) / 2)];
+
+              const messageRows = dimensions.width < 300
+                ? [Math.floor(column.chars.length / 2) - 1, Math.floor(column.chars.length / 2)]
+                : [Math.floor(column.chars.length / 2)];
+
+              const isStaticChar = dimensions.width < 300
+                ? (colIndex >= messageStartCol[0] &&
+                    colIndex < messageStartCol[0] + staticMessage1.length &&
+                    rowIndex === messageRows[0]) ||
+                  (colIndex >= messageStartCol[1] &&
+                    colIndex < messageStartCol[1] + staticMessage2.length &&
+                    rowIndex === messageRows[1])
+                : colIndex >= messageStartCol[0] &&
+                  colIndex < messageStartCol[0] + fullMessage.length &&
+                  rowIndex === messageRows[0];
+
+              return (
+                <text
+                  key={`${colIndex}-${rowIndex}`}
+                  x={(colIndex + 0.5) * (dimensions.width / matrixColumns.length)}
+                  y={(rowIndex + 0.5) * (dimensions.height / column.chars.length)}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className={`font-mono ${isStaticChar ? "animate-pulse" : ""}`}
+                  style={{
+                    fill: isDarkMode ? "#ffffff" : "#000000",
+                    fontSize: "1rem",
+                  }}
+                >
+                  {char}
+                </text>
+              );
+            })
+          )}
+        </svg>
+      </div>
       <a href="#about">
-        <button className="flex items-center justify-center w-fit p-2 px-5 min-w-max text-sm font-bold text-center hover:bg-opacity-100 active:bg-opacity-90 rounded-full backdrop-blur-sm transition-all md:text-base outline-[#09073a]/50 absolute bottom-4 right-1/2 z-10 translate-x-1/2 bg-slate-800/20 hover:bg-slate-700/50">
+        <button className="flex items-center justify-center w-fit p-2 px-4 min-w-max text-sm font-bold text-center hover:bg-opacity-100 active:bg-opacity-90 rounded-full backdrop-blur-sm transition-all md:text-base outline-[#09073a]/50 absolute bottom-4 right-1/2 z-10 translate-x-1/2 dark:bg-zinc-800/40 dark:hover:bg-zinc-700/50 bg-zinc-800 hover:bg-zinc-800/70">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

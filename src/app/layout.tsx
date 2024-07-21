@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/themeContext";
 
 const robot_mono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -29,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={robot_mono.className}>{children}</body>
+      <body className={`${robot_mono.className}`}>
+        <ThemeProvider>
+        {children}
+        </ThemeProvider>
+        </body>
     </html>
   );
 }
