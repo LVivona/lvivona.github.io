@@ -39,11 +39,11 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className={`  z-20 fixed top-0 left-0 right-0 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+    <nav className={`z-20 fixed top-0 left-0 right-0 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}>
       <div 
         className={cn("relative  transition-all duration-300", isHoveredOn ? "backdrop-blur-md" : "")}
       >
-        <div className="dark:bg-black bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="dark:bg-black bg-white max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo placeholder */}
             {/* <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full mr-8"></div> */}
