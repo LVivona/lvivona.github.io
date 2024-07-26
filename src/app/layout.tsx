@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   // Add more metadata as needed
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,10 +61,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${robot_mono.className}`}>
-        <ThemeProvider>
-        {children}
-        </ThemeProvider>
+        <body className={`dark:bg-black bg-white`}>
+          <ThemeProvider>
+          {children}
+          </ThemeProvider>
         </body>
     </html>
   );
