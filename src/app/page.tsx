@@ -104,14 +104,14 @@ export default function Home() {
       {/* Floating Navbar */}
       <Navbar />
 
-      <main className="  flex min-h-screen flex-col items-center justify-between py-2 mb-24">
+      <main className="  flex min-h-screen flex-col items-center justify-between py-2">
         <div className="relative flex items-center justify-center h-screen">
           <section className="w-full h-full flex ">
             <HeroSection/>
           </section>
         </div>
 
-        <div className="relative mx-auto max-w-4xl sm:px-10 pb-10 antialiased p-2 sm:p-0">
+        <div className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0">
           <section id="about" className="max-h-screen max-w-screen ">
             <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
               {isSectionVisible && (
