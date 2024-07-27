@@ -7,6 +7,7 @@ import Image from "next/image";
 // Components
 import HeroSection from "@/components/hero";
 import Navbar from "@/components/ui/navbar";
+import { useMobile } from "@/context/mobilContext";
 
 const blogs = [
   {
@@ -61,44 +62,39 @@ const blogs = [
   },
 ];
 
-export default function Home() {
-
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-  //choose the screen size 
-  const handleResize = () => {
-    if (window.innerWidth < 675) {
-        setIsSectionVisible(true)
-    }
-  }
+export function useElementVisibility(elementId: string) {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1, // Trigger when 10% of the element is visible
+      }
+    );
+
+    const element = document.getElementById(elementId);
+    if (element) {
+      observer.observe(element);
+    }
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [])
-
-  
-  
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById("about");
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-          setIsSectionVisible(true);
-        }
+      if (element) {
+        observer.unobserve(element);
       }
     };
+  }, [elementId]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  return isVisible;
+}
 
+export default function Home() {
+  const isAboutVisible = useElementVisibility('about');
+  
   return (
     <section className="  dark:bg-black bg-white ">
       {/* Floating Navbar */}
@@ -114,7 +110,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0">
           <section id="about" className="max-h-screen max-w-screen ">
             <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
-              {isSectionVisible && (
+              {isAboutVisible && (
                 <>
                   <div className="relative z-20 max-w-3xl text-center text-md text-black dark:text-white animation translateUp">
                     <h1 className="text-center mb-4  animate-translateUp">

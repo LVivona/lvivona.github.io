@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/themeContext";
+import { MobileProvider } from "@/context/mobilContext";
 
 const robot_mono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -25,7 +26,8 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://vivona.xyz",
     title: "Luca Vivona",
-    description: "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
+    description:
+      "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
     images: [
       {
         url: "/og-card.png",
@@ -39,7 +41,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@LucaVVivona", // Replace with your actual Twitter handle
     title: "Luca Vivona",
-    description: "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
+    description:
+      "Luca Vivona personal website. Here you can find information about me, blog posts, and current projects.",
     images: [
       {
         url: "/og-card.png",
@@ -52,20 +55,20 @@ export const metadata: Metadata = {
   // Add more metadata as needed
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overscroll-none">
-        <body className={`dark:bg-black bg-white`}>
-          <ThemeProvider>
-          {children}
-          </ThemeProvider>
-        </body>
+    <html lang="en">
+      <body>
+        <ThemeProvider>
+          <MobileProvider>
+            {children}
+            </MobileProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
