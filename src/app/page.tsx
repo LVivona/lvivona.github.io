@@ -62,7 +62,7 @@ const blogs = [
   },
 ];
 
-export function useElementVisibility(elementId: string) {
+function useElementVisibility(elementId: string) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
