@@ -47,7 +47,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
 
   useEffect(() => {
-    document.documentElement.className = `${isDarkMode ? 'dark' : ''} dark:bg-black bg-white scroll-smooth overscroll-y-auto `;
+    document.documentElement.className = `${isDarkMode ? 'dark' : ''} dark:bg-black bg-white overscroll-y-auto `;
   }, [isDarkMode]);
 
   const toggleTheme = () => {
