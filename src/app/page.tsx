@@ -9,6 +9,8 @@ import HeroSection from "@/components/hero";
 import Navbar from "@/components/ui/navbar";
 import { useMobile } from "@/context/mobilContext";
 
+import Me from '@/../public/github-profile.png'
+
 const blogs = [
   {
     type: "Technical",
@@ -62,38 +64,53 @@ const blogs = [
   },
 ];
 
-function useElementVisibility(elementId: string) {
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1, // Trigger when 10% of the element is visible
-      }
-    );
+// function useElementVisibility(elementId: string) {
+//   const { isMobile } = useMobile()
+//   const [isVisible, setIsVisible] = useState(isMobile);
 
-    const element = document.getElementById(elementId);
-    if (element) {
-      observer.observe(element);
-    }
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         setIsVisible(entry.isIntersecting);
+//       },
+//       {
+//         root: null,
+//         rootMargin: '0px',
+//         threshold: 0.1,
+//       }
+//     );
 
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, [elementId]);
+//     const element = document.getElementById(elementId);
+//     if (element) {
+//       observer.observe(element);
+//     }
 
-  return isVisible;
-}
+//     // Check if the hash in the URL matches the elementId
+//     const checkHash = () => {
+//       if (window.location.hash === `#${elementId}`) {
+//         setIsVisible(true);
+//       }
+//     };
+
+//     // Check hash on initial load and when it changes
+//     window.addEventListener('hashchange', checkHash);
+//     checkHash();
+
+//     return () => {
+//       if (element) {
+//         observer.unobserve(element);
+//       }
+//       window.removeEventListener('hashchange', checkHash);
+//     };
+//   }, [elementId]);
+
+//   return isVisible;
+// }
+
 
 export default function Home() {
-  const isAboutVisible = useElementVisibility('about');
+  // const isAboutVisible = useElementVisibility('about');
   
   return (
     <section className="  dark:bg-black bg-white ">
@@ -107,21 +124,21 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0">
-          <section id="about" className="max-h-screen max-w-screen ">
+        <div id="about" className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0">
+          <section className="max-h-screen max-w-screen ">
             <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
-              {isAboutVisible && (
+              { (
                 <>
                   <div className="relative z-20 max-w-3xl text-center text-md text-black dark:text-white animation translateUp">
                     <h1 className="text-center mb-4  animate-translateUp">
                       About me{" "}
                     </h1>
                     <Image
-                      src="https://avatars.githubusercontent.com/u/66436951?v=4"
+                      src={Me}
                       alt="Luca Vivona"
                       width={128}
                       height={128}
-                      loading="eager"
+                      loading="lazy"
                       className="rounded-full mx-auto border-[2px] border-black/60 animate-translateUp duration-200"
                     />
                     <div
