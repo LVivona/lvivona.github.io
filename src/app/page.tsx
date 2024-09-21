@@ -1,5 +1,4 @@
-"use client";
-import { useState, useEffect, useContext } from "react";
+"use server";
 
 // NEXTJS
 import Image from "next/image";
@@ -7,111 +6,11 @@ import Image from "next/image";
 // Components
 import HeroSection from "@/components/hero/home";
 import Navbar from "@/components/ui/navbar";
-import { useMobile } from "@/context/mobilContext";
 
 import Me from '@/../public/github-profile.png'
-import Canvas from "@/components/canva/canvas";
-
-const blogs = [
-  {
-    type: "Technical",
-    src: "/api/images?folder=blogs&image=clouds.webp&height=700&width=500&crop=true",
-    alt: "Technical Blog 1",
-    height: 300,
-    width: 500,
-    description: "An in-depth look at React hooks",
-    slug: "react-hooks-deep-dive",
-    title: "Empower your entire workforce with enterprise-grade AI",
-  },
-  {
-    type: "Opinion",
-    src: "/api/images?folder=blogs&image=rvb.webp&height=700&width=500&crop=true",
-    alt: "Opinion Blog 1",
-    height: 300,
-    width: 500,
-    description: "Why TypeScript is the future of web development",
-    slug: "typescript-future-of-web-dev",
-    title: "Empower your entire workforce with enterprise-grade AI",
-  },
-  {
-    type: "Opinion",
-    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
-    alt: "Opinion Blog 1",
-    height: 300,
-    width: 500,
-    description: "Why TypeScript is the future of web development",
-    slug: "typescript-future-of-web-dev",
-    title: "Empower your entire workforce with enterprise-grade AI",
-  },
-  {
-    type: "Opinion",
-    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
-    alt: "Opinion Blog 1",
-    height: 300,
-    width: 500,
-    description: "Why TypeScript is the future of web development",
-    slug: "typescript-future-of-web-dev",
-    title: "Empower your entire workforce with enterprise-grade AI",
-  },
-  {
-    type: "Opinion",
-    src: "/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true",
-    alt: "Opinion Blog 1",
-    height: 300,
-    width: 500,
-    description: "Why TypeScript is the future of web development",
-    slug: "typescript-future-of-web-dev",
-    title: "Empower your entire workforce with enterprise-grade AI",
-  },
-];
 
 
-// function useElementVisibility(elementId: string) {
-//   const { isMobile } = useMobile()
-//   const [isVisible, setIsVisible] = useState(isMobile);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         setIsVisible(entry.isIntersecting);
-//       },
-//       {
-//         root: null,
-//         rootMargin: '0px',
-//         threshold: 0.1,
-//       }
-//     );
-
-//     const element = document.getElementById(elementId);
-//     if (element) {
-//       observer.observe(element);
-//     }
-
-//     // Check if the hash in the URL matches the elementId
-//     const checkHash = () => {
-//       if (window.location.hash === `#${elementId}`) {
-//         setIsVisible(true);
-//       }
-//     };
-
-//     // Check hash on initial load and when it changes
-//     window.addEventListener('hashchange', checkHash);
-//     checkHash();
-
-//     return () => {
-//       if (element) {
-//         observer.unobserve(element);
-//       }
-//       window.removeEventListener('hashchange', checkHash);
-//     };
-//   }, [elementId]);
-
-//   return isVisible;
-// }
-
-
-export default function Home() {
-  // const isAboutVisible = useElementVisibility('about');
+export default async function Home() {
   
   return (
     <section className="  dark:bg-black bg-white ">
