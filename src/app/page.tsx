@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 // NEXTJS
 import Image from "next/image";
@@ -10,7 +10,7 @@ import Navbar from "@/components/ui/navbar";
 import Me from '@/../public/github-profile.png'
 
 
-export default async function Home() {
+export default function Home() {
   
   return (
     <section className="  dark:bg-black bg-white ">

@@ -1,8 +1,8 @@
-'use server';
+'use client';
 import { BeeMovieComponent } from "@/components/hero/bee_movie";
 import Navbar from "@/components/ui/navbar";
 
-export default async function Projects() {
+export default function Projects() {
   return (
     <div className="dark:bg-black bg-white dark:text-white text-black flex flex-col justify-center items-center w-full h-screen p-6 ">
       <Navbar />
