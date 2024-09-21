@@ -5,11 +5,12 @@ import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
 // Components
-import HeroSection from "@/components/hero";
+import HeroSection from "@/components/hero/home";
 import Navbar from "@/components/ui/navbar";
 import { useMobile } from "@/context/mobilContext";
 
 import Me from '@/../public/github-profile.png'
+import Canvas from "@/components/canva/canvas";
 
 const blogs = [
   {
@@ -145,50 +146,13 @@ export default function Home() {
                       className="animate-translateUp text-center pt-5">
                         Hello wanderer, my name is Luca Vivona, a Computer Scientist who loves tinkering around with Deep Learning models, and low-level programming. 🧠🤖
                       </div>
-
                   </div>
-
-                  {/* <div className=" flex flex-row gap-x-2 border-1 animate-translateUp ">
-                    <BlogCard
-                      type="For Everyone"
-                      alt="blog-1"
-                      src="/api/images?folder=blogs&image=clouds.webp&height=700&width=500&crop=true"
-                      width={250}
-                      height={250}
-                      description="building a compiler"
-                      slug="compilers"
-                      title="Empower your entire workforce with enterprise-grade AI"
-                    />
-                    <div className=" hidden sm:block">
-                      <BlogCard
-                        type="Technical"
-                        alt="blog-1"
-                        src="/api/images?folder=blogs&image=landscape.webp&height=700&width=500&crop=true"
-                        width={250}
-                        height={250}
-                        description="building a compiler"
-                        slug="compilers"
-                        title="Empower your entire workforce with enterprise-grade AI"
-                      />
-                    </div>
-                    <div className=" hidden md:block">
-                      <BlogCard
-                        type="Project"
-                        alt="blog-1"
-                        src="/api/images?folder=blogs&image=rvb.webp&height=700&width=500&crop=true"
-                        width={250}
-                        height={250}
-                        description="building a compiler"
-                        slug="compilers"
-                        title="Empower your entire workforce with enterprise-grade AI"
-                      />
-                    </div>
-                  </div> */}
                 </>
               )}
             </div>
           </section>
         </div>
+
       </main>
     </section>
   );
