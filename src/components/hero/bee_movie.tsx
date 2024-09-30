@@ -1,5 +1,5 @@
 "use client";
-import { TextGenerateEffect } from "@/components/ui/text-generate";
+import { TextGenerateEffect } from "@/components/text-generate";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

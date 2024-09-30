@@ -2,11 +2,11 @@
 import { useState, useEffect } from 'react'
 import { cn } from '@/utils/cn';
 import Link from 'next/link';
-import { Github } from '../icons/github';
+import { Github } from './icons/github';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 import { useTheme } from '@/context/themeContext';
 
-export default function Navbar() {
+export default function Navbar({className = "", visibleDelay = 500} : {className? : string, visibleDelay? : number}) {
   const {isDarkMode, toggleTheme} = useTheme();
   const [visible, setVisible] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -15,7 +15,7 @@ export default function Navbar() {
   useEffect(() =>{
     const timer = setTimeout(() => {
       setVisible(true);
-    }, 500); 
+    }, visibleDelay); 
 
     return () => clearTimeout(timer);
   })
@@ -43,7 +43,7 @@ export default function Navbar() {
       <div 
         className={cn("relative  transition-all duration-300", isHoveredOn ? "backdrop-blur-md" : "")}
       >
-        <div className="dark:bg-black bg-white max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`dark:bg-black ${className} bg-white max-w-full mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="flex items-center justify-between h-16">
             {/* Logo placeholder */}
             {/* <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full mr-8"></div> */}
@@ -53,7 +53,7 @@ export default function Navbar() {
               {/* header links */}
 
               <Link href='/'><div onMouseEnter={() => {setIsHoveredOn(true)}} className=' text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group hover:underline'>Home</div></Link>
-              <Link href='/blogs'><div onMouseEnter={() => {setIsHoveredOn(true)}} className='text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group hover:underline'>Blog</div></Link>
+              <Link href='/blog'><div onMouseEnter={() => {setIsHoveredOn(true)}} className='text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group hover:underline'>Blog</div></Link>
               <Link href='/projects'><div onMouseEnter={() => {setIsHoveredOn(true)}} className='text-black dark:text-gray-300 hover:opacity-40 duration-300 text-sm relative group hover:underline'>Projects</div></Link>
 
             </div>
