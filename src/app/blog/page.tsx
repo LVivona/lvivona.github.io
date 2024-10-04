@@ -43,7 +43,7 @@ export default function Blogs() {
       <div className="flex justify-center items-center min-h-screen">
         <Navbar visibleDelay={100} />
         <div className="w-full max-w-3xl text-left dark:text-white mt-10">
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4 md:p-0 px-5">
             {[
               { slug: "hello_world" },
               // Add more slugs here as needed

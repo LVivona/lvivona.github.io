@@ -45,8 +45,8 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ slug }) => {
   const { Content } = blogPost;
 
   return (
-    <div className={`flex justify-center  min-h-screen`}>
-      <div className="w-full max-w-3xl text-left">
+    <div className={`flex justify-center min-h-screen`}>
+      <div className="w-full max-w-3xl text-left sm:px-0 px-5">
         {/* Render the MDX content as a React component */}
         <Content />
       </div>
