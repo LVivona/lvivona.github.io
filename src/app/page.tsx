@@ -8,8 +8,6 @@ import HeroSection from "@/components/hero/home";
 import Navbar from "@/components/navbar";
 
 import Me from "@/../public/github-profile.png";
-import Link from "next/link";
-import { Github } from "@/components/icons/github";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -24,17 +22,17 @@ export default function Home() {
             <HeroSection />
           </section>
         </div>
-
+        <hr className="h-4 bg-repeat-x bg-left border-0 flex-shrink-0"/>
         <div
           id="about"
-          className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0"
+          className="relative mx-auto max-w-4xl h-screen sm:px-10 antialiased p-1 sm:p-0 font-mono font-semibold"
         >
           <section className="max-h-screen max-w-screen ">
             <div className="flex gap-y-10 h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md ">
               {
                 <>
                   <div className="relative z-20 max-w-3xl text-center text-md text-black dark:text-white animation translateUp">
-                    <h1 className="text-center mb-4  animate-translateUp">
+                    <h1 className="text-center mb-4 animate-translateUp">
                       About me{" "}
                     </h1>
                     <Image

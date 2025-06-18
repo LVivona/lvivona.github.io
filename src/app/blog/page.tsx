@@ -1,18 +1,11 @@
 import Navbar from "@/components/navbar";
 import Link from "next/link";
-import { Footer } from "@/components/footer";
-import {
-  DifficultyBadge,
-  Difficulty,
-  Program,
-  ProgramBadge,
-} from "@/components/badge";
 
 interface BlogMetadata {
   link: string;
   title: string;
   description: string;
-  tags: JSX.Element[]; // Use this type if tags are React elements
+  tags: JSX.Element[];
 }
 
 interface Metadata {
@@ -26,46 +19,54 @@ const metadata: Metadata = {
     description: "Introduction :)",
     tags: [],
   },
-  // Uncomment if you want to include more items
-  // what_is_reinforcement_learning: {
-  //   link: "/blog/what_is_reinforcement_learning",
-  //   title: "What Is Reinforcement Learning",
-  //   description: "Explores the RL.",
-  //   tags: [
-  //     <DifficultyBadge key={"wim_tag_b"} difficulty={Difficulty.beginner} />,
-  //   ],
-  // },
 };
+
+const ASCII_BLOG = `
+                  $$$$$$$\\  $$\\                     
+                  $$  __$$\\ $$ |                    
+                  $$ |  $$ |$$ | $$$$$$\\   $$$$$$\\  
+                  $$$$$$$\\ |$$ |$$  __$$\\ $$  __$$\\ 
+                  $$  __$$\\ $$ |$$ /  $$ |$$ /  $$ |
+                  $$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |
+                  $$$$$$$  |$$ |\\$$$$$$  |\\$$$$$$$ |
+                  \\_______/ \\__| \\______/  \\____$$ |
+                                          $$\\   $$ |
+                                          \\$$$$$$  |
+                                          \\______/ 
+
+////////////////////////////////////////////////////////////////////////////
+                         `;
 
 export default function Blogs() {
   return (
-    <main className="dark:bg-black bg-white">
-      <div className="flex justify-center items-center min-h-screen">
-        <Navbar visibleDelay={100} />
-        <div className="w-full max-w-3xl text-left dark:text-white mt-10">
-          <div className="flex flex-col space-y-4 md:p-0 px-5">
-            {[
-              { slug: "hello_world" },
-              // Add more slugs here as needed
-            ].map((item) => {
-              const _item: BlogMetadata | undefined = metadata[item.slug];
-              if (_item === undefined) {
-                return null;
-              }
-              return (
-                <Link key={item.slug} className="text-xl" href={_item.link}>
-                  <div className="p-5 border-[2px] dark:border-white border-gray-300 hover:shadow-lg flex flex-col rounded-md duration-300">
-                    {_item.title}
-                    <div className="py-1 flex flex-row space-x-1">{_item.tags}</div>
-                    <span className="text-sm">{_item.description}</span>
-                  </div>
+    <div className="dark:bg-black bg-white dark:text-white text-black flex flex-col items-center w-full min-h-screen p-6">
+      <Navbar visibleDelay={100} />
+      <div className="animate-translateUp flex flex-col items-center justify-center max-h-screen max-w-full md:w-[1000px] p-4 pt-20">
+        <div className="w-full flex justify-center">
+          <pre className="font-mono sm:text-xs lg:text-sm text-xxxs dark:text-white text-black whitespace-pre overflow-x-auto">
+            {ASCII_BLOG}
+          </pre>
+        </div>
+        <div id="blog" className=" max-w-full md:w-[750px] p-4 flex flex-col space-y-4 justify-center font-mono px-10 text-sm md:pt-10">
+          {[
+            { slug: "hello_world" },
+            // Add more slugs here as needed
+          ].map((item) => {
+            const _item: BlogMetadata | undefined = metadata[item.slug];
+            if (_item === undefined) {
+              return null;
+            }
+            return (
+              <div key={item.slug} id={item.slug}>
+                <Link className="text-purple-400 underline font-bold mr-2" href={_item.link}>
+                  {_item.title}
                 </Link>
-              );
-            })}
-          </div>
+                {_item.description}
+              </div>
+            );
+          })}
         </div>
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 }
