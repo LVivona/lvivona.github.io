@@ -1,8 +1,6 @@
 "use client";
 
 import Navbar from "@/components/navbar";
-import { fetchRepositoryWithLatestCommit } from "@/lib/github";
-import { useState, useEffect } from "react";
 
 const ASCII_TITLE = `
  /$$$$$$$                                               /$$             
@@ -25,30 +23,6 @@ const REPOS: Record<string, string> = {
 };
 
 export default function Projects() {
-  const [repoData, setRepoData] = useState<Record<any, any>>({});
-
-  useEffect(() => {
-    async function fetchAllRepos() {
-      const results: Record<string, any> = {};
-      for (const [owner, repo] of Object.entries(REPOS)) {
-        try {
-          const { repository, commit } = await fetchRepositoryWithLatestCommit(
-            owner,
-            repo
-          );
-          results[repo] = {
-            repository,
-            commit,
-          };
-        } catch (err) {
-          console.error(`Error fetching ${owner}/${repo}:`, err);
-        }
-      }
-      setRepoData(results);
-    }
-    fetchAllRepos();
-  }, []);
-
   return (
     <div className="dark:bg-black bg-white dark:text-white text-black flex flex-col items-center w-full min-h-screen p-6">
       <Navbar visibleDelay={100} />
