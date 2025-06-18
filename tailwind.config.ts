@@ -12,6 +12,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+	fontSize: {
+        'xxxs': '0.35rem',    // 8px - Perfect for very small ASCII art
+        'xxs': '0.5rem',   // 10px - Small ASCII art
+		'xs': '0.625rem',   // 10px - Small ASCII art
+      },
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
@@ -42,7 +47,7 @@ const config: Config = {
   			}
   		},
   		animation: {
-  			translateUp: 'translateUp 1.5s ease-out',
+  			translateUp: 'translateUp 1.2s ease-out',
   			pad: 'pad 1.5s ease-in-out forwards'
   		},
   		borderRadius: {
